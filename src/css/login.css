@@ -16,3 +16,9 @@
 .login__container h1 {
   text-align: center;
 }
+
+@media only screen and (max-width: 768px) {
+  .login__container {
+    grid-column: 2 / 8;
+  }
+}
