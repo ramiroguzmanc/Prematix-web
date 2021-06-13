@@ -12,7 +12,7 @@ import {
 import fireConfig from "../fireConfig";
 import image from "../images/loginimage.png";
 
-const Login = () => {
+const Login = (props) => {
   const [userInput, setUserInput] = useState({
     email: "",
     password: "",
@@ -43,7 +43,7 @@ const Login = () => {
         .then((userCredential) => {
           setIsLoading(false);
           let user = userCredential.user;
-          console.log("Usuario Logueado: " + user);
+          props.history.push("/dashboard");
         });
     } catch (error) {
       setIsLoading(false);
