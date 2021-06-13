@@ -6,7 +6,13 @@ import { Link } from "react-router-dom";
 const header = () => {
   return (
     <div className="header">
-      <Navbar collapseOnSelect expand="lg" bg="light" variant="light">
+      <Navbar
+        collapseOnSelect
+        expand="lg"
+        bg="light"
+        variant="light"
+        sticky="top"
+      >
         <Navbar.Brand as={Link} to="/dashboard">
           Prematix Web
         </Navbar.Brand>
