@@ -1,12 +1,12 @@
 import React from "react";
-import { CardDeck, Card, Row, Col } from "react-bootstrap";
+import { Container, Card, Row, Col } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import "../css/cards.css";
 
 const DashBoardCard = () => {
   return (
-    <CardDeck>
-      <Row className="px-3 p-lg-4 mt-5">
+    <Container>
+      <Row className="px-1 p-lg-4 mt-5">
         <Col className="col-12 my-2 col-md-6 col-lg-4">
           <Card as={Link} to="/" className="card">
             {/* <Card.Img variant="top" src="holder.js/100px160" /> */}
@@ -76,7 +76,7 @@ const DashBoardCard = () => {
           </Card>
         </Col>
       </Row>
-    </CardDeck>
+    </Container>
   );
 };
 
