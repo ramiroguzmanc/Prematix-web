@@ -1,0 +1,8 @@
+.card {
+  text-decoration: none;
+  color: black;
+}
+
+.card:hover {
+  text-decoration: none;
+}

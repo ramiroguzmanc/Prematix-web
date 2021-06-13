@@ -1,9 +1,10 @@
 import React from "react";
+import Card from "../components/DashBoardCard";
 
 const Dashboard = (props) => {
   return (
     <div>
-      <h1>This is my dashboard</h1>
+      <Card />
     </div>
   );
 };
