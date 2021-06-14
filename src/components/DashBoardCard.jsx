@@ -8,7 +8,7 @@ const DashBoardCard = () => {
     <Container>
       <Row className="px-1 p-lg-4 mt-5">
         <Col className="col-12 my-2 col-md-6 col-lg-4">
-          <Card as={Link} to="/" className="card">
+          <Card as={Link} to="/neonatalcare" className="card">
             {/* <Card.Img variant="top" src="holder.js/100px160" /> */}
             <Card.Body>
               <Card.Title>Cuidado neonatal</Card.Title>
