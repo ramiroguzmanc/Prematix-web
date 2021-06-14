@@ -43,7 +43,7 @@ const DashBoardCard = () => {
           </Card>
         </Col>
         <Col className="col-12 my-2 col-md-6 col-lg-4">
-          <Card as={Link} to="/">
+          <Card as={Link} to="/frequentquestions">
             {/* <Card.Img variant="top" src="holder.js/100px160" /> */}
             <Card.Body>
               <Card.Title>Preguntas frecuentes</Card.Title>

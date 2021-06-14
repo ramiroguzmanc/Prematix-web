@@ -4,6 +4,7 @@ import DashBoard from "./Containers/Dashboard";
 import NotFound from "./Containers/NotFound";
 import Layout from "./Containers/Layout";
 import NeonatalCare from "./Containers/NeonatalCare";
+import QA from "./Containers/QA";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { BrowserRouter, Route, Switch } from "react-router-dom";
 
@@ -16,6 +17,7 @@ function App() {
           <Route exact path="/dashboard" component={DashBoard} />
           <Route exact path="/login" component={Login} />
           <Route exact path="/neonatalcare" component={NeonatalCare} />
+          <Route exact path="/frequentquestions" component={QA} />
           <Route component={NotFound} />
         </Switch>
       </Layout>
