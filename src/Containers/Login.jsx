@@ -1,4 +1,7 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useCallback, useContext } from "react";
+import { withRouter, Redirect } from "react-router";
+import app from "../firebase";
+import { AuthContext } from "../Auth";
 import "../css/login.css";
 import {
   Button,
@@ -9,70 +12,59 @@ import {
   Media,
   Alert,
 } from "react-bootstrap";
-import fireConfig from "../fireConfig";
 import image from "../images/loginimage.png";
 
-const Login = (props) => {
-  const [userInput, setUserInput] = useState({
-    email: "",
-    password: "",
-  });
-  const [error, setError] = useState(null);
+const Login = ({ history }) => {
   const [isLoading, setIsLoading] = useState(false);
+  const [error, setError] = useState();
 
-  const handleChange = (e) => {
-    setUserInput({
-      ...userInput,
-      [e.target.name]: e.target.value,
-      [e.target.name]: e.target.value,
-    });
-  };
-
-  useEffect(() => {
-    fireConfig.auth().onAuthStateChanged((user) => {
-      user ? console.log("User loggeado") : console.log("User no loggeado");
-    });
-  }, []);
-
-  const handlePress = async () => {
-    try {
-      setIsLoading(true);
-      await fireConfig
-        .auth()
-        .signInWithEmailAndPassword(userInput.email, userInput.password)
-        .then((userCredential) => {
-          setIsLoading(false);
-          let user = userCredential.user;
-          props.history.push("/dashboard");
-        });
-    } catch (error) {
-      setIsLoading(false);
-      switch (error.code) {
-        case "auth/invalid-email":
-          setError("El correo ingresado no es válido");
-          break;
-        case "auth/user-disabled":
-          setError("El correo ingresado ha sido inhabilitado");
-          break;
-        case "auth/user-not-found":
-          setError("El correo ingresado no se encuentra registrado");
-          break;
-        case "auth/wrong-password":
-          setError("La contraseña ingresada es incorrecta");
-          break;
-        default:
-          setError(error.message);
-          break;
+  const handlelogin = useCallback(
+    async (event) => {
+      event.preventDefault();
+      const { email, password } = event.target.elements;
+      try {
+        setIsLoading(true);
+        await app
+          .auth()
+          .signInWithEmailAndPassword(email.value, password.value);
+        history.push("/");
+        setIsLoading(false);
+      } catch (error) {
+        setIsLoading(false);
+        switch (error.code) {
+          case "auth/invalid-email":
+            setError("El correo ingresado no es válido");
+            break;
+          case "auth/user-disabled":
+            setError("El correo ingresado ha sido inhabilitado");
+            break;
+          case "auth/user-not-found":
+            setError("El correo ingresado no se encuentra registrado");
+            break;
+          case "auth/wrong-password":
+            setError("La contraseña ingresada es incorrecta");
+            break;
+          default:
+            setError(error.message);
+            break;
+        }
       }
-    }
-  };
+    },
+    [history]
+  );
+
+  const { currentUser } = useContext(AuthContext);
+
+  if (currentUser) {
+    return <Redirect to="/" />;
+  }
 
   return (
     <div className="login">
       <div className="login__container">
         <h1>Prematix Login</h1>
         <Container>
-          <Form>
+          <Form onSubmit={handlelogin}>
             <Row className="mt-5">
               <Col xs={6} className="d-none d-md-block">
                 <Media className="justify-content-md-center">
@@ -86,7 +78,6 @@ const Login = (props) => {
                     type="email"
                     placeholder="Correo electrónico"
                     name="email"
-                    onChange={handleChange}
                   />
                 </Form.Group>
                 <Form.Group controlId="formBasicPassword" className="my-4">
@@ -95,14 +86,9 @@ const Login = (props) => {
                     type="password"
                     name="password"
                     placeholder="Contraseña"
-                    onChange={handleChange}
                   />
                 </Form.Group>
-                <Button
-                  variant="success"
-                  onClick={handlePress}
-                  disabled={isLoading}
-                >
+                <Button type="submit" variant="success" disabled={isLoading}>
                   {isLoading ? "Cargando..." : "Iniciar sesión"}
                 </Button>
               </Col>
@@ -125,4 +111,4 @@ const Login = (props) => {
   );
 };
 
-export default Login;
+export default withRouter(Login);

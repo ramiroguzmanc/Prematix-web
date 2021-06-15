@@ -1,7 +1,7 @@
 import React from "react";
 import Card from "../components/DashBoardCard";
 
-const Dashboard = (props) => {
+const Dashboard = () => {
   return (
     <div>
       <Card />

@@ -1,9 +1,21 @@
-import React from "react";
+import React, { useContext, useEffect } from "react";
 import "../css/header.css";
-import { Navbar, Nav } from "react-bootstrap";
+import { Navbar, Nav, Button } from "react-bootstrap";
 import { Link } from "react-router-dom";
+import app from "../firebase";
+import { AuthContext } from "../Auth";
 
-const header = () => {
+const Header = () => {
+  const { currentUser } = useContext(AuthContext);
+
+  const handleLogOut = async () => {
+    try {
+      await app.auth().signOut();
+    } catch (error) {
+      alert("Ha ocurrido un error, inténtalo de nuevo");
+    }
+  };
+
   return (
     <div className="header">
       <Navbar
@@ -43,9 +55,16 @@ const header = () => {
           </Nav>
           <Nav>
             {/* <Nav.Link href="#deets">More deets</Nav.Link> */}
-            <Nav.Link eventKey={2} as={Link} to="/login">
-              Iniciar Sesión
-            </Nav.Link>
+
+            {currentUser ? (
+              <Button variant="danger" onClick={handleLogOut}>
+                Cerrar sesión
+              </Button>
+            ) : (
+              <Nav.Link eventKey={2} as={Link} to="/login">
+                Iniciar Sesión
+              </Nav.Link>
+            )}
           </Nav>
         </Navbar.Collapse>
       </Navbar>
@@ -53,4 +72,4 @@ const header = () => {
   );
 };
 
-export default header;
+export default Header;

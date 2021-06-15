@@ -1,5 +1,5 @@
 import React from "react";
-import { Container, Row, Col, Cards, Accordion } from "react-bootstrap";
+import { Container, Row, Col, Accordion } from "react-bootstrap";
 import AccordionCard from "../components/AccordionCard";
 
 const QA = () => {
