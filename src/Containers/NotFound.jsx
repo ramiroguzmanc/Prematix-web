@@ -1,9 +1,13 @@
 import React from "react";
+import notFoundImage from "../images/404.png";
+import { Media } from "react-bootstrap";
 
 const NotFound = () => {
   return (
     <>
-      <h1>404 Not Found</h1>
+      <Media className="justify-content-center mt-5">
+        <img src={notFoundImage} alt="404" width={500} />
+      </Media>
     </>
   );
 };
