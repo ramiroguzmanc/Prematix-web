@@ -5,7 +5,7 @@ const About = () => {
   return (
     <>
       <Row className="my-5 mx-0">
-        <Col className="col-8 offset-2">
+        <Col className="col-10 offset-1 col-md-8 offset-md-2">
           <Card className="p-4">
             <h1>Prematix Web (Beta)</h1>
             <p>
