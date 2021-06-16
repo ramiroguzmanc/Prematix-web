@@ -49,7 +49,7 @@ const Header = () => {
             <Nav.Link as={Link} to="/">
               Contactar pediatra
             </Nav.Link>
-            <Nav.Link as={Link} to="/">
+            <Nav.Link as={Link} to="/about">
               Acerca de
             </Nav.Link>
           </Nav>
