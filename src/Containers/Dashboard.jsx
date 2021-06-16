@@ -36,9 +36,9 @@ const Dashboard = () => {
                 de una videollamada"
         />
         <Card
-          to="/"
-          title="Acerca de"
-          description="Mira información sobre esta app"
+          to="/profile"
+          title="Mi cuenta"
+          description="Mira información relacionada con tu perfil"
         />
       </Row>
     </Container>
