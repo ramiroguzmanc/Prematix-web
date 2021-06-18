@@ -3,12 +3,13 @@ import { Container, Row, Spinner } from "react-bootstrap";
 import NeoCard from "../components/NeoCard";
 import firebase from "firebase";
 import { AuthContext } from "../Auth";
+import Loader from "../components/Loader";
 
 const NeonatalList = () => {
   const { currentUser } = useContext(AuthContext);
   const displayName = currentUser.displayName;
   const [neonatos, setNeonatos] = useState([]);
-  const [isLoading, setIsLoading] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
     setIsLoading(true);
@@ -44,16 +45,10 @@ const NeonatalList = () => {
   return (
     <Container className="my-4">
       {isLoading ? (
-        <Row className="justify-content-md-center my-5">
-          <Spinner animation="border" role="status" variant="light">
-            <span className="sr-only">Loading...</span>
-          </Spinner>
-        </Row>
+        <Loader />
       ) : (
         <>
-          <h1 className="text-center" style={{ color: "whitesmoke" }}>
-            Neonatos de {displayName}
-          </h1>
+          <h1 className="text-center text-light">Neonatos de {displayName}</h1>
           <Row className="justify-content-md-center my-5">
             {neonatos.map((neo) => (
               <NeoCard
@@ -63,6 +58,7 @@ const NeonatalList = () => {
                 weight={neo.weight}
                 height={neo.height}
                 IMC={neo.IMC}
+                to={`/neonatallist/${neo.id}`}
               />
             ))}
           </Row>

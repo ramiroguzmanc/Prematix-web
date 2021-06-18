@@ -6,7 +6,12 @@ const NeoCard = (props) => {
   return (
     <>
       <Col md="auto">
-        <Card style={{ width: "18rem" }} className="mb-2" as={Link} to="/">
+        <Card
+          style={{ width: "18rem" }}
+          className="mb-2"
+          as={Link}
+          to={props.to}
+        >
           <Card.Header>
             <Card.Title>
               {props.name} {props.lastname}
