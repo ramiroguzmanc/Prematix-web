@@ -20,11 +20,7 @@ const Profile = () => {
       alert(error);
     }
 
-    // console.log(`
-    //     Name: ${displayName.value}
-    //     email: ${email.value}
-    //     phone: ${phoneNumber.value}
-    // `);
+    console.log(user);
   };
 
   return (
