@@ -37,7 +37,7 @@ const Header = () => {
             <Nav.Link as={Link} to="/neonatalcare">
               Cuidado neonatal
             </Nav.Link>
-            <Nav.Link as={Link} to="/">
+            <Nav.Link as={Link} to="/neonatallist">
               Acerca de mi neonato
             </Nav.Link>
             <Nav.Link as={Link} to="/">

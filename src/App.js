@@ -8,6 +8,7 @@ import QA from "./Containers/QA";
 import Register from "./Containers/Register";
 import Profile from "./Containers/Profile";
 import About from "./Containers/About";
+import NeonatalList from "./Containers/NeonatalList";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { BrowserRouter, Route, Switch } from "react-router-dom";
 import { AuthProvider } from "./Auth";
@@ -25,6 +26,7 @@ function App() {
             <Route exact path="/neonatalcare" component={NeonatalCare} />
             <Route exact path="/frequentquestions" component={QA} />
             <Route exact path="/register" component={Register} />
+            <PrivateRoute exact path="/neonatallist" component={NeonatalList} />
             <Route exact path="/about" component={About} />
             <PrivateRoute extact path="/profile" component={Profile} />
             <Route component={NotFound} />

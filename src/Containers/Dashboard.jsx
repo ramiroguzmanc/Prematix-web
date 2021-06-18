@@ -14,7 +14,7 @@ const Dashboard = () => {
                 ellos."
         />
         <Card
-          to="/"
+          to="/neonatallist"
           title="Acerca de mi neonato"
           description="Mira la información básica más reciente de tu neonato"
         />
