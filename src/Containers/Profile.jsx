@@ -34,6 +34,18 @@ const Profile = () => {
           <Form onSubmit={handleUpdate}>
             <Form.Group as={Row}>
               <Form.Label column sm="2">
+                Uid
+              </Form.Label>
+              <Col sm="10">
+                <Form.Control
+                  plaintext
+                  readOnly
+                  defaultValue={currentUser.uid}
+                />
+              </Col>
+            </Form.Group>
+            <Form.Group as={Row}>
+              <Form.Label column sm="2">
                 Nombre
               </Form.Label>
               <Col sm="10">
