@@ -1,8 +1,34 @@
-import React from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { Container, Row } from "react-bootstrap";
 import Card from "../components/DashBoardCard";
+import { AuthContext } from "../Auth";
+import firebase from "firebase";
 
 const Dashboard = () => {
+  const { currentUser } = useContext(AuthContext);
+  const [isAdmin, setIsAdmin] = useState(false);
+
+  useEffect(() => {
+    if (currentUser) {
+      const db = firebase.firestore();
+      try {
+        db.collection("users")
+          .doc(currentUser.email)
+          .get()
+          .then((doc) => {
+            if (doc.exists) {
+              setIsAdmin(doc.data().adminUser);
+            } else {
+              // doc.data() will be undefined in this case
+              console.log("No such document!");
+            }
+          });
+      } catch (error) {
+        console.error(error);
+      }
+    }
+  }, []);
+
   return (
     <Container>
       <Row className="px-1 p-lg-4 mt-5">
@@ -40,6 +66,24 @@ const Dashboard = () => {
           title="Mi cuenta"
           description="Mira información relacionada con tu perfil"
         />
+
+        {currentUser && isAdmin ? (
+          <>
+            <Card
+              to="/"
+              title="Gestión de usuarios"
+              description="Administración de los usuarios"
+            />
+
+            <Card
+              to="/"
+              title="Registrar nuevo neonato"
+              description="Agregar un nuevo neonato al sistema"
+            />
+          </>
+        ) : (
+          <></>
+        )}
       </Row>
     </Container>
   );
