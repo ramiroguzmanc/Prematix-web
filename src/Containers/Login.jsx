@@ -1,5 +1,6 @@
 import React, { useState, useCallback, useContext } from "react";
 import { withRouter, Redirect } from "react-router";
+import { Link } from "react-router-dom";
 import app from "../firebase";
 import { AuthContext } from "../Auth";
 import "../css/login.css";
@@ -91,6 +92,9 @@ const Login = ({ history }) => {
                 <Button type="submit" variant="success" disabled={isLoading}>
                   {isLoading ? "Cargando..." : "Iniciar sesión"}
                 </Button>
+                <Link to="/register" className="ml-3">
+                  Regístrate
+                </Link>
               </Col>
             </Row>
             <Row>
