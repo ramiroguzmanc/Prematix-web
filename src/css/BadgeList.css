@@ -6,6 +6,7 @@
   background-color: white;
   margin: 20px;
   box-shadow: 1px 1px 8px -3px rgba(0, 0, 0, 0.75);
+  justify-content: space-between;
 }
 
 .item__imageContainer--image {
@@ -38,4 +39,13 @@
 
 .figureclass {
   margin: 0;
+}
+
+.item__buttonsContainer {
+  display: flex;
+  align-items: center;
+}
+
+.Container {
+  display: flex;
 }

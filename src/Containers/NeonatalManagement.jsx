@@ -12,7 +12,6 @@ const NeonatalManagement = () => {
     if (email == "") {
       alert("El correo correo ingresado no es válido");
     } else {
-      console.log(email);
       setLoading(true);
       const db = firebase.firestore();
       try {
@@ -39,7 +38,6 @@ const NeonatalManagement = () => {
             setLoading(false);
             if (neonatos.length === 0)
               alert("El email ingresado no registra neonatos");
-            console.log(neonatos);
           });
       } catch (error) {
         setLoading(false);
@@ -74,7 +72,22 @@ const NeonatalManagement = () => {
       </Row>
       <Row>
         <Col sm={{ span: 6, offset: 3 }}>
-          <BadgeListItem />
+          {neonatos.map((neo) => {
+            return (
+              <BadgeListItem
+                name={neo.name}
+                lastname={neo.lastname}
+                weight={neo.weight}
+                imc={neo.IMC}
+                height={neo.height}
+              />
+            );
+          })}
+        </Col>
+      </Row>
+      <Row>
+        <Col sm={{ offset: 5 }}>
+          <Button variant="success">Añadir nuevo neonato</Button>
         </Col>
       </Row>
     </>
