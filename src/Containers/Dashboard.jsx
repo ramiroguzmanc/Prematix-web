@@ -76,9 +76,9 @@ const Dashboard = () => {
             />
 
             <Card
-              to="/"
-              title="Registrar nuevo neonato"
-              description="Agregar un nuevo neonato al sistema"
+              to="/neonatemanagement"
+              title="Administración de neonatos"
+              description="Agregar, eliminar o editar un nuevo neonato al sistema"
             />
           </>
         ) : (

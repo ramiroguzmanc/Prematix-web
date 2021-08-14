@@ -1,0 +1,41 @@
+.item {
+  border: 1px solid whitesmoke;
+  border-radius: 3px;
+  padding: 10px;
+  display: flex;
+  background-color: white;
+  margin: 20px;
+  box-shadow: 1px 1px 8px -3px rgba(0, 0, 0, 0.75);
+}
+
+.item__imageContainer--image {
+  border-radius: 100%;
+}
+
+.item__infoContainer {
+  margin: 0 15px;
+}
+
+.item__infoContainer--name {
+  font-weight: bold;
+  display: block;
+}
+
+.item__infoContainer--twitter {
+  display: flex;
+  align-items: center;
+  color: #4cb6e5;
+}
+
+.item__infoContainer--subtitle {
+  margin: 0;
+}
+
+.item__infoContainer--twitterLogo {
+  width: 30px;
+  height: 30px;
+}
+
+.figureclass {
+  margin: 0;
+}

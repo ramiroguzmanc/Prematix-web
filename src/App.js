@@ -10,6 +10,7 @@ import Profile from "./Containers/Profile";
 import About from "./Containers/About";
 import NeonatalList from "./Containers/NeonatalList";
 import NeonatalInfo from "./Containers/NeonatalInfo";
+import NeonatalManage from "./Containers/NeonatalManagement";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { BrowserRouter, Route, Switch } from "react-router-dom";
 import { AuthProvider } from "./Auth";
@@ -35,6 +36,11 @@ function App() {
             />
             <Route exact path="/about" component={About} />
             <PrivateRoute extact path="/profile" component={Profile} />
+            <PrivateRoute
+              exact
+              path="/neonatemanagement"
+              component={NeonatalManage}
+            />
             <Route component={NotFound} />
           </Switch>
         </Layout>
