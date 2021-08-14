@@ -2,10 +2,16 @@ import React, { useState, useContext } from "react";
 import { Col, InputGroup, Button, FormControl, Row } from "react-bootstrap";
 import BadgeListItem from "../components/BadgeListItem";
 import firebase from "firebase";
+import AddNewNeo from "../components/AddNewNeo";
 
 const NeonatalManagement = () => {
   const [neonatos, setNeonatos] = useState([]);
   const [loading, setLoading] = useState(false);
+
+  const [show, setShow] = useState(false);
+
+  const handleClose = () => setShow(false);
+  const handleShow = () => setShow(true);
 
   const handleClick = (e) => {
     const email = document.getElementById("emailInput").value;
@@ -45,6 +51,8 @@ const NeonatalManagement = () => {
       }
     }
   };
+
+  const addNew = () => {};
 
   return (
     <>
@@ -87,9 +95,17 @@ const NeonatalManagement = () => {
       </Row>
       <Row>
         <Col sm={{ offset: 5 }}>
-          <Button variant="success">Añadir nuevo neonato</Button>
+          <Button variant="success" onClick={handleShow}>
+            Añadir nuevo neonato
+          </Button>
         </Col>
       </Row>
+      <AddNewNeo
+        show={show}
+        handleShow={handleShow}
+        handleClose={handleClose}
+        onClick={handleShow}
+      />
     </>
   );
 };
