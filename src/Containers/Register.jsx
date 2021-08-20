@@ -12,6 +12,11 @@ const Register = ({ history }) => {
         await app
           .auth()
           .createUserWithEmailAndPassword(email.value, password.value);
+        await app
+          .firestore()
+          .collection("users")
+          .doc(email.value)
+          .set({ adminUser: false });
         history.push("/");
       } catch (error) {
         alert(error);
