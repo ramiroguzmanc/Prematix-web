@@ -59,7 +59,7 @@ const NeonatalManagement = () => {
               console.error(error);
             }
           } else {
-            alert("Correo no válido");
+            alert("Correo no válido o usuario no registrado");
             setValidEmail(false);
             setLoading(false);
           }

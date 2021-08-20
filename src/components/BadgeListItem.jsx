@@ -12,7 +12,9 @@ const BadgeListItem = (props) => {
       <div className="Container">
         <Figure className="figureclass">
           <Figure.Image
-            src={"https://picsum.photos/100/100"}
+            src={
+              "https://cdn0.iconfinder.com/data/icons/set-ui-app-android/32/8-512.png"
+            }
             width={100}
             height={100}
           />
