@@ -41,9 +41,11 @@ const NeonatalInfo = (props) => {
               <Row>
                 <Col className="col-md-6 offset-md-3">
                   <img
-                    src="https://picsum.photos/200"
+                    src={neonato.ImageURL}
                     class="img-thumbnail rounded-circle mx-auto my-5 d-block"
-                    alt="..."
+                    alt="Neonato"
+                    width="400px"
+                    height="400px"
                   />
                 </Col>
               </Row>
@@ -64,6 +66,9 @@ const NeonatalInfo = (props) => {
                     </li>
                     <li class="list-group-item">
                       <b>Estatura:</b> {neonato.height} cm
+                    </li>
+                    <li class="list-group-item">
+                      <b>Sexo:</b> {neonato.sex}
                     </li>
                     <li class="list-group-item">
                       <b>Perímetro craneal:</b> {neonato.PC} cm
