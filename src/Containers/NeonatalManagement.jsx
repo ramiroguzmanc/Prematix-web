@@ -34,16 +34,27 @@ const NeonatalManagement = () => {
                 .onSnapshot((qsp) => {
                   const neonatos = [];
                   qsp.docs.forEach((doc) => {
-                    const { IMC, PC, born, height, lastname, name, weight } =
-                      doc.data();
-                    neonatos.push({
-                      id: doc.id,
+                    const {
                       IMC,
+                      ImageURL,
                       PC,
                       born,
                       height,
                       lastname,
                       name,
+                      sex,
+                      weight,
+                    } = doc.data();
+                    neonatos.push({
+                      id: doc.id,
+                      IMC,
+                      ImageURL,
+                      PC,
+                      born,
+                      height,
+                      lastname,
+                      name,
+                      sex,
                       weight,
                     });
                   });
@@ -102,6 +113,7 @@ const NeonatalManagement = () => {
                 weight={neo.weight}
                 imc={neo.IMC}
                 height={neo.height}
+                neo={neo}
               />
             );
           })}
