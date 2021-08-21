@@ -9,14 +9,14 @@ const AddNewNeo = (props) => {
     let neo = {
       IMC: document.getElementById("neoIMCInput").value,
       PC: document.getElementById("neoPCInput").value,
-      born: "",
+      born: document.getElementById("neoBornInput").value,
+      sex: document.querySelector('input[name="sexGroup"]:checked').value,
       height: document.getElementById("neoHeightInput").value,
       lastname: document.getElementById("neoLastNameInput").value,
       name: document.getElementById("neoNameInput").value,
       weight: document.getElementById("neoWeightInput").value,
       ImageURL: ImageURL,
     };
-
     try {
       await db.collection("users").doc(email).collection("neonatos").add(neo);
       props.handleClose();
@@ -96,7 +96,37 @@ const AddNewNeo = (props) => {
                 id="neoLastNameInput"
               />
             </Form.Group>
-
+            <Row>
+              <Form.Group className="mb-3" as={Col}>
+                <Form.Label>Sexo</Form.Label>
+                <div>
+                  <Form.Check
+                    inline
+                    type="radio"
+                    label="Masculino"
+                    name="sexGroup"
+                    id="inline-radio-1"
+                    value="Masculino"
+                  />
+                  <Form.Check
+                    inline
+                    type="radio"
+                    label="Femenino"
+                    name="sexGroup"
+                    id="inline-radio-2"
+                    value="Femenino"
+                  />
+                </div>
+              </Form.Group>
+              <Form.Group className="mb-3" as={Col}>
+                <Form.Label>Fecha Nacimiento</Form.Label>
+                <Form.Control
+                  type="date"
+                  placeholder="DD/MM/AAAA"
+                  id="neoBornInput"
+                />
+              </Form.Group>
+            </Row>
             <Row>
               <Form.Group className="mb-3" as={Col}>
                 <Form.Label>Peso</Form.Label>
