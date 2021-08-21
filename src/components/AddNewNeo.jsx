@@ -107,6 +107,7 @@ const AddNewNeo = (props) => {
                     name="sexGroup"
                     id="inline-radio-1"
                     value="Masculino"
+                    checked
                   />
                   <Form.Check
                     inline
