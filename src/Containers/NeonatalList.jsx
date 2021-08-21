@@ -1,5 +1,5 @@
 import React, { useEffect, useContext, useState } from "react";
-import { Container, Row, Spinner } from "react-bootstrap";
+import { Container, Row } from "react-bootstrap";
 import NeoCard from "../components/NeoCard";
 import firebase from "firebase";
 import { AuthContext } from "../Auth";

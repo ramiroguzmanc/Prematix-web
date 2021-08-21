@@ -96,6 +96,7 @@ const NeonatalManagement = () => {
           {neonatos.map((neo) => {
             return (
               <BadgeListItem
+                id={neo.id}
                 name={neo.name}
                 lastname={neo.lastname}
                 weight={neo.weight}
