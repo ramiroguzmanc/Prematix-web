@@ -27,6 +27,11 @@ const NeoCard = (props) => {
             <Card.Text>
               <small className="text-muted">Altura: {props.height}</small>
             </Card.Text>
+            <Card.Text>
+              <small className="text-muted">
+                F. Nacimiento: {props.neo.born}
+              </small>
+            </Card.Text>
           </Card.Body>
         </Card>
       </Col>
