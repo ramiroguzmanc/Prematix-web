@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { Figure, Button, Modal, Alert } from "react-bootstrap";
 import "../css/BadgeList.css";
 import EditNeo from "../components/EditNeo";
+import firebase from "../firebase";
 
 const BadgeListItem = (props) => {
   const [show, setShow] = useState(false);
@@ -11,6 +12,24 @@ const BadgeListItem = (props) => {
   const handleShowEdit = () => setShowEdit(true);
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
+
+  const handleDelete = () => {
+    const db = firebase.firestore();
+    const email = document.getElementById("emailInput").value;
+
+    db.collection("users")
+      .doc(email)
+      .collection("neonatos")
+      .doc(props.neo.id)
+      .delete()
+      .then(() => {
+        alert("Documento eliminado exitosamente");
+      })
+      .catch((error) => console.error("Errror eliminando: ", error));
+
+    handleClose();
+  };
+
   return (
     <div className="item" sm={6}>
       <div className="Container">
@@ -80,7 +99,7 @@ const BadgeListItem = (props) => {
           <Button variant="secondary" onClick={handleClose}>
             Cancelar
           </Button>
-          <Button variant="danger" onClick={() => alert("Registro eliminado")}>
+          <Button variant="danger" onClick={handleDelete}>
             Eliminar registro
           </Button>
         </Modal.Footer>
