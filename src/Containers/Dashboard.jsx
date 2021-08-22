@@ -45,7 +45,7 @@ const Dashboard = () => {
           description="Mira la información básica más reciente de tu neonato"
         />
         <Card
-          to="/"
+          to="/neonatalview"
           title="Ver mi neonato"
           description="Mira a tu neonato en vivo desde la incubadora!"
         />
