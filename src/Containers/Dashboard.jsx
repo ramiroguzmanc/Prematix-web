@@ -56,7 +56,7 @@ const Dashboard = () => {
                 tienen los padres de recién nacidos."
         />
         <Card
-          to="/"
+          to="/contactpediatrician"
           title="Contactar pediatra"
           description="Realiza una consulta médica con el pediatra encargado por medio
                 de una videollamada"

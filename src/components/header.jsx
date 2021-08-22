@@ -46,7 +46,7 @@ const Header = () => {
             <Nav.Link as={Link} to="/frequentquestions">
               Preguntas frecuentes
             </Nav.Link>
-            <Nav.Link as={Link} to="/">
+            <Nav.Link as={Link} to="/contactpediatrician">
               Contactar pediatra
             </Nav.Link>
             <Nav.Link as={Link} to="/about">

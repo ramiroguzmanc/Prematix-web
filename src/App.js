@@ -11,6 +11,7 @@ import About from "./Containers/About";
 import NeonatalList from "./Containers/NeonatalList";
 import NeonatalInfo from "./Containers/NeonatalInfo";
 import NeonatalView from "./Containers/NeonatalView";
+import VideoCall from './Containers/VideoCall';
 import NeonatalManage from "./Containers/NeonatalManagement";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { BrowserRouter, Route, Switch } from "react-router-dom";
@@ -28,6 +29,7 @@ function App() {
             <Route exact path="/login" component={Login} />
             <Route exact path="/neonatalcare" component={NeonatalCare} />
             <Route exact path="/neonatalview" component={NeonatalView} />
+            <Route exact path="/contactpediatrician" component={VideoCall} />
             <Route exact path="/frequentquestions" component={QA} />
             <Route exact path="/register" component={Register} />
             <PrivateRoute exact path="/neonatallist" component={NeonatalList} />

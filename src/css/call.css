@@ -148,6 +148,15 @@ video {
     z-index: 10;
 }
 
+.videos .remotew {
+    display:none;
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+}
+
 .videos .remote {
     position: absolute;
     top: 0;
