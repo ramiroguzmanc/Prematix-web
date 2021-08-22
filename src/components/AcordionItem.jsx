@@ -2,11 +2,15 @@ import React, { useState } from "react";
 import { Card, Accordion, Button, Modal, Alert } from "react-bootstrap";
 import parse from "html-react-parser";
 import firebase from "firebase";
+import TextEditor from "./TextEditor";
 
 const AcordionItem = (props) => {
   const [show, setShow] = useState(false);
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
+  const [showEditor, setShowEditor] = useState(false);
+  const handleCloseEditor = () => setShowEditor(false);
+  const handleShowEditor = () => setShowEditor(true);
 
   const handleDelete = () => {
     const db = firebase.firestore();
@@ -32,9 +36,19 @@ const AcordionItem = (props) => {
         >
           <h5>{props.entries.title}</h5>
           {props.isAdmin && props.currentUser ? (
-            <Button variant="danger" size="sm" onClick={handleShow}>
-              Eliminar
-            </Button>
+            <div className="buttonsContainer">
+              <Button
+                variant="primary"
+                size="sm"
+                className="mr-2"
+                onClick={handleShowEditor}
+              >
+                Editar
+              </Button>
+              <Button variant="danger" size="sm" onClick={handleShow}>
+                Eliminar
+              </Button>
+            </div>
           ) : (
             <></>
           )}
@@ -63,6 +77,15 @@ const AcordionItem = (props) => {
           </Button>
         </Modal.Footer>
       </Modal>
+      <TextEditor
+        show={showEditor}
+        setShow={setShowEditor}
+        handleClose={handleCloseEditor}
+        edit={true}
+        textToEdit={props.entries.content}
+        titleToEdit={props.entries.title}
+        entryID={props.entries.id}
+      />
     </>
   );
 };

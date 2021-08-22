@@ -7,9 +7,9 @@ import firebase from "firebase";
 
 const TextEditor = (props) => {
   const [text, setText] = useState("");
+  const db = firebase.firestore();
 
   const handleAddText = () => {
-    const db = firebase.firestore();
     const title = document.getElementById("titleInput").value;
 
     db.collection("neocare")
@@ -22,6 +22,21 @@ const TextEditor = (props) => {
 
     props.handleClose();
     setText("");
+  };
+
+  const handleEditText = () => {
+    const docRef = db.collection("neocare").doc(props.entryID);
+    const title = document.getElementById("titleInput").value;
+
+    docRef
+      .update({
+        title: title,
+        content: text,
+      })
+      .then(() => console.log("Document successfully updated!"))
+      .catch((error) => console.error("Error updating document: ", error));
+
+    props.handleClose();
   };
 
   return (
@@ -41,13 +56,18 @@ const TextEditor = (props) => {
         <Modal.Body>
           <Form.Group className="mb-3" controlId="formBasicEmail">
             <Form.Label>Título</Form.Label>
-            <Form.Control type="text" placeholder="Título" id="titleInput" />
+            <Form.Control
+              type="text"
+              placeholder="Título"
+              id="titleInput"
+              defaultValue={props.edit ? props.titleToEdit : ""}
+            />
           </Form.Group>
           <div className="editor">
             <Form.Label>Contenido</Form.Label>
             <CKEditor
               editor={ClassicEditor}
-              data={text}
+              data={props.edit ? props.textToEdit : text}
               onChange={(event, editor) => {
                 const data = editor.getData();
                 setText(data);
@@ -59,8 +79,11 @@ const TextEditor = (props) => {
           <Button variant="secondary" onClick={props.handleClose}>
             Cerrar
           </Button>
-          <Button variant="primary" onClick={handleAddText}>
-            Añadir nueva entrada
+          <Button
+            variant="primary"
+            onClick={props.edit ? handleEditText : handleAddText}
+          >
+            {props.edit ? "Editar entrada" : "Añadir nueva entrada"}
           </Button>
         </Modal.Footer>
       </Modal>
