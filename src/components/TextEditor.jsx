@@ -12,7 +12,7 @@ const TextEditor = (props) => {
   const handleAddText = () => {
     const title = document.getElementById("titleInput").value;
 
-    db.collection("neocare")
+    db.collection(props.qa ? "qa" : "neocare")
       .add({
         title: title,
         content: text,
@@ -25,7 +25,9 @@ const TextEditor = (props) => {
   };
 
   const handleEditText = () => {
-    const docRef = db.collection("neocare").doc(props.entryID);
+    const docRef = db
+      .collection(props.qa ? "qa" : "neocare")
+      .doc(props.entryID);
     const title = document.getElementById("titleInput").value;
 
     docRef

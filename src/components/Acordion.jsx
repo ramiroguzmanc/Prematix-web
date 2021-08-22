@@ -10,7 +10,7 @@ const Acordion = (props) => {
   useEffect(() => {
     const db = firebase.firestore();
 
-    db.collection("neocare").onSnapshot((qsp) => {
+    db.collection(props.qa ? "qa" : "neocare").onSnapshot((qsp) => {
       const ent = [];
       qsp.forEach((doc) => {
         const { title, content } = doc.data();

@@ -1,7 +1,27 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { Accordion, Card } from "react-bootstrap";
+import firebase from "firebase";
 
 const AccordionCard = (props) => {
+  const [entries, setEntries] = useState([]);
+
+  useEffect(() => {
+    const db = firebase.firestore();
+
+    db.collection("qa").onSnapshot((qsp) => {
+      const ent = [];
+      qsp.forEach((doc) => {
+        const { title, content } = doc.data();
+        ent.push({
+          id: doc.id,
+          title: title,
+          content: content,
+        });
+      });
+      setEntries(ent);
+    });
+  }, []);
+
   return (
     <>
       <Card>

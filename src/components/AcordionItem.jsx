@@ -15,7 +15,7 @@ const AcordionItem = (props) => {
   const handleDelete = () => {
     const db = firebase.firestore();
 
-    db.collection("neocare")
+    db.collection(props.qa ? "qa" : "neocare")
       .doc(props.entries.id)
       .delete()
       .then(() => {
@@ -85,6 +85,7 @@ const AcordionItem = (props) => {
         textToEdit={props.entries.content}
         titleToEdit={props.entries.title}
         entryID={props.entries.id}
+        {...props}
       />
     </>
   );
