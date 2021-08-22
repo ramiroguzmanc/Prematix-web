@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import { Accordion, Button, Modal, Alert } from "react-bootstrap";
+import { Accordion } from "react-bootstrap";
 import firebase from "firebase";
 import { useState } from "react";
 import AcordionItem from "./AcordionItem";
