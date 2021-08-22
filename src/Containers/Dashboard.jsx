@@ -69,11 +69,11 @@ const Dashboard = () => {
 
         {currentUser && isAdmin ? (
           <>
-            <Card
-              to="/"
-              title="Gestión de usuarios"
-              description="Administración de los usuarios"
-            />
+            {/* <Card
+               to="/"
+               title="Gestión de usuarios"
+               description="Administración de los usuarios"
+             /> */}
 
             <Card
               to="/neonatemanagement"
