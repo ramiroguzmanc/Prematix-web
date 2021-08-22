@@ -45,7 +45,7 @@ const Dashboard = () => {
           description="Mira la información básica más reciente de tu neonato"
         />
         <Card
-          to="/"
+          to="/neonatalview"
           title="Ver mi neonato"
           description="Mira a tu neonato en vivo desde la incubadora!"
         />
@@ -56,7 +56,7 @@ const Dashboard = () => {
                 tienen los padres de recién nacidos."
         />
         <Card
-          to="/"
+          to="/contactpediatrician"
           title="Contactar pediatra"
           description="Realiza una consulta médica con el pediatra encargado por medio
                 de una videollamada"
