@@ -1,10 +1,10 @@
 import React, { useEffect } from "react";
-import { Accordion, Card, Table } from "react-bootstrap";
+import { Accordion, Button, Modal, Alert } from "react-bootstrap";
 import firebase from "firebase";
 import { useState } from "react";
-import parse from "html-react-parser";
+import AcordionItem from "./AcordionItem";
 
-const Acordion = () => {
+const Acordion = (props) => {
   const [entries, setEntries] = useState([]);
 
   useEffect(() => {
@@ -28,16 +28,7 @@ const Acordion = () => {
     <>
       <Accordion defaultActiveKey="0">
         {entries.map((ent) => {
-          return (
-            <Card>
-              <Accordion.Toggle as={Card.Header} eventKey={ent.id}>
-                <h5>{ent.title}</h5>
-              </Accordion.Toggle>
-              <Accordion.Collapse eventKey={ent.id}>
-                <Card.Body>{parse(ent.content)}</Card.Body>
-              </Accordion.Collapse>
-            </Card>
-          );
+          return <AcordionItem entries={ent} {...props} />;
         })}
       </Accordion>
     </>

@@ -47,7 +47,7 @@ const NeonatalCare = () => {
       )}
       <Row>
         <Col>
-          <Acordion />
+          <Acordion isAdmin={isAdmin} currentUser={currentUser} />
         </Col>
       </Row>
       <TextEditor show={show} setShow={setShow} handleClose={handleClose} />
