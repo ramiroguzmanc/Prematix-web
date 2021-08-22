@@ -148,6 +148,17 @@ video {
     z-index: 10;
 }
 
+.videos .localvideo {
+    display: none;
+    position: absolute;
+    bottom: 40px;
+    right: 40px;
+    width: 280px;
+    height: 210px;
+    border-radius: 8px;
+    z-index: 10;
+}
+
 .videos .remotew {
     display:none;
     position: absolute;

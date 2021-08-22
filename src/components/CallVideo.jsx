@@ -1,5 +1,6 @@
 import React,{useState, useRef} from 'react'
 import firebase from "firebase/app";
+import 'firebase/firestore';
 import "../css/call.css";
 
 import { ReactComponent as HangupIcon } from "../icons/hangup.svg";
@@ -7,6 +8,7 @@ import { ReactComponent as MoreIcon } from "../icons/more-vertical.svg";
 import { ReactComponent as CopyIcon } from "../icons/copy.svg";
 
 const firestore = firebase.firestore();
+firebase.firestore().settings({ experimentalForceLongPolling: true })
 
 //Initialize WebRTC
 const servers = {

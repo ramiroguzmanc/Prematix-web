@@ -1,4 +1,4 @@
-import React, { useState, useRef,useContext,useEffect } from "react";
+import React, { useState, useRef, useContext, useEffect } from "react";
 import { AuthContext } from "../Auth";
 import firebase from "firebase/app";
 import "../css/call.css";
@@ -8,6 +8,7 @@ import { ReactComponent as MoreIcon } from "../icons/more-vertical.svg";
 import { ReactComponent as CopyIcon } from "../icons/copy.svg";
 
 const firestore = firebase.firestore();
+
 
 //Initialize WebRTC
 const servers = {
@@ -186,10 +187,11 @@ export const NeonatalVideo = ({ mode, callId, setPage }) => {
     window.location.reload();
   };
   if (currentUser && isAdmin) {
+    console.log(remoteRef)
     return (
       <div className="videos">
         <video ref={localRef} autoPlay playsInline className="local" muted />
-        <video ref={remoteRef} autoPlay playsInline className="remotew" />
+        <video ref={remoteRef} autoPlay playsInline className="remotew" muted />
         <div className="buttonsContainer">
           <button
             onClick={hangUp}
@@ -226,10 +228,23 @@ export const NeonatalVideo = ({ mode, callId, setPage }) => {
         )}
       </div>
     );
-  }else{
+  } else {
     return (
       <div className="videos">
-        <video ref={remoteRef} autoPlay playsInline className="remote" />
+        <video
+          ref={localRef}
+          autoPlay
+          muted
+          playsInline
+          className="localvideo"
+        />
+        <video
+          ref={remoteRef}
+          autoPlay
+          muted
+          playsInline
+          className="remote"
+        />
         <div className="buttonsContainer">
           <button
             onClick={hangUp}
@@ -252,18 +267,18 @@ export const NeonatalVideo = ({ mode, callId, setPage }) => {
           </div>
         </div>
         {!webcamActive && (
-        <div className="modalContainerview">
-          <div className="modalview">
-            <h3>Turn on your camera and microphone and start the call</h3>
-            <div className="containerview">
-              <button onClick={() => setPage("home")} className="secondary">
-                Cancel
-              </button>
-              <button onClick={setupSources}>Start</button>
+          <div className="modalContainerview">
+            <div className="modalview">
+              <h3>Turn on your camera and microphone and start the call</h3>
+              <div className="containerview">
+                <button onClick={() => setPage("home")} className="secondary">
+                  Cancel
+                </button>
+                <button onClick={setupSources}>Start</button>
+              </div>
             </div>
           </div>
-        </div>
-      )}
+        )}
       </div>
     );
   }
