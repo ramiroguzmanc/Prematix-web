@@ -24,7 +24,7 @@ const About = () => {
               <li>Sergio Pérez Arrieta</li>
               <li>Juan Torres Tovio (Asesor)</li>
             </ul>
-            <h3>Integrantes grupo --</h3>
+            <h3>Integrantes grupo I. QXCA</h3>
             <ul>
               <li>Jemima Cassares Guarnizo</li>
               <li>Carolina Castellanos (Asesora)</li>
