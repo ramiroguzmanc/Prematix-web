@@ -168,10 +168,15 @@ const CallVideo = ({mode, callId, setPage}) => {
   };
 
   return (
-    <div className="videos">
-      <video ref={localRef} autoPlay playsInline className="local" muted />
-      <video ref={remoteRef} autoPlay playsInline className="remote" />
-
+    <div className="containerv">
+      <div className="video-container">
+        <div className="video">
+          <video ref={localRef} autoPlay playsInline className="local" muted />
+        </div>
+        <div className="video">
+          <video ref={remoteRef} autoPlay playsInline className="remote" />
+        </div>
+      </div>
       <div className="buttonsContainer">
         <button
           onClick={hangUp}

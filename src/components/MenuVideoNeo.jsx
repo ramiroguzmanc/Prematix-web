@@ -43,6 +43,7 @@ export const MenuVideoNeo = ({ joinCode, setJoinCode, setPage }) => {
           value={joinCode}
           onChange={e => setJoinCode(e.target.value)}
           placeholder='Join with Code'
+          style={{ marginBottom: "5px" }}
         />
         <button onClick={() => setPage('join')}>Answer</button>
       </div>
