@@ -12,6 +12,11 @@ body {
     -moz-osx-font-smoothing: grayscale;
 }
 
+/* .containerv {
+	display: grid;
+	grid-template-columns: 7fr 3fr;
+} */
+
 
 .App {
   text-align: center;
@@ -64,21 +69,10 @@ button {
 }
 
 input {
-    border: none;
     font-family: inherit;
     padding: 10px;
     border-radius: 5px;
     margin-bottom: 50px;
-}
-
-video {
-    display: block;
-    object-fit: cover;
-    width: 100%;
-    height: 100%;
-    padding: 0;
-    margin: 0;
-    background: #ffffff;
 }
 
 .home {
@@ -138,54 +132,53 @@ video {
     margin-right: 20px;
 }
 
-.videos .local {
-    position: absolute;
-    bottom: 40px;
-    right: 40px;
-    width: 280px;
-    height: 210px;
-    border-radius: 8px;
-    z-index: 10;
+.containerv{
+    margin-top: 10vh;
+    margin-left: 5vw;
+    margin-right: 5vw;
 }
 
+.video-container {
+	display: grid;
+	grid-template-columns: 1fr 1fr;
+	justify-content: center;
+	align-content: center;
+}
+
+.video video{
+    width:100%;
+}
+
+.videos{
+    margin-top: 10vh;
+    margin-left: 5vw;
+    margin-right: 5vw;
+}
 .videos .localvideo {
     display: none;
-    position: absolute;
-    bottom: 40px;
-    right: 40px;
-    width: 280px;
-    height: 210px;
-    border-radius: 8px;
-    z-index: 10;
 }
 
 .videos .remotew {
     display:none;
-    position: absolute;
-    top: 0;
-    left: 0;
-    bottom: 0;
-    right: 0;
 }
 
 .videos .remote {
-    position: absolute;
     top: 0;
     left: 0;
     bottom: 0;
     right: 0;
 }
 
-.videos .buttonsContainer {
-    position: absolute;
-    left: 50%;
-    bottom: 40px;
-    transform: translateX(-50%);
+.buttonsContainer {
+    text-align: center;
+	margin-top: 2rem;
     display: flex;
-    z-index: 1;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
 }
 
-.videos .buttonsContainer .button {
+.buttonsContainer .button {
     border: 2px solid transparent;
     padding: 24px;
     border-radius: 50%;
@@ -195,40 +188,40 @@ video {
     transition-timing-function: ease;
 }
 
-.videos .buttonsContainer .button:hover {
+.buttonsContainer .button:hover {
     box-shadow: 0px 5px 10px #0000001a;
     border-color: transparent;
 }
 
-.videos .buttonsContainer .hangup {
+.buttonsContainer .hangup {
     margin-right: 50px;
     background-color: #ff694f;
     color: #ffffff;
 }
 
-.videos .buttonsContainer .more {
+.buttonsContainer .more {
     background-color: white;
     border-color: #dddddd;
     cursor: pointer;
 }
 
-.videos .buttonsContainer .more .popover {
+.buttonsContainer .more .popover {
     visibility: hidden;
     position: absolute;
-    bottom: 100%;
-    left: 100%;
     padding: 20px 0px;
+    top: 80%;
+    left: 60%;
     font-size: 1rem;
     background-color: white;
     border-radius: 8px;
     box-shadow: 0px 5px 10px #0000001a;
 }
 
-.videos .buttonsContainer .more:focus-within .popover {
+.buttonsContainer .more:focus-within .popover {
     visibility: visible;
 }
 
-.videos .buttonsContainer .more .popover button {
+.buttonsContainer .more .popover button {
     display: flex;
     align-items: center;
     white-space: nowrap;
@@ -236,6 +229,6 @@ video {
     color: black;
 }
 
-.videos .buttonsContainer .more .popover button svg {
+.buttonsContainer .more .popover button svg {
     margin-right: 20px;
 }

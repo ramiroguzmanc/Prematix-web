@@ -190,7 +190,7 @@ export const NeonatalVideo = ({ mode, callId, setPage }) => {
     console.log(remoteRef)
     return (
       <div className="videos">
-        <video ref={localRef} autoPlay playsInline className="local" muted />
+        <video ref={localRef} autoPlay playsInline className="local" muted style={{width: "65%"}}/>
         <video ref={remoteRef} autoPlay playsInline className="remotew" muted />
         <div className="buttonsContainer">
           <button
@@ -253,18 +253,6 @@ export const NeonatalVideo = ({ mode, callId, setPage }) => {
           >
             <HangupIcon />
           </button>
-          <div tabIndex={0} role="button" className="more button">
-            <MoreIcon />
-            <div className="popover">
-              <button
-                onClick={() => {
-                  navigator.clipboard.writeText(roomId);
-                }}
-              >
-                <CopyIcon /> Copy joining code
-              </button>
-            </div>
-          </div>
         </div>
         {!webcamActive && (
           <div className="modalContainerview">
