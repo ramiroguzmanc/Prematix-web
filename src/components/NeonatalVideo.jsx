@@ -1,20 +1,24 @@
-import React, { useState, useRef, useContext, useEffect } from "react";
-import { AuthContext } from "../Auth";
-import firebase from "firebase/app";
-import "../css/call.css";
+import React, { useState, useRef, useContext, useEffect } from 'react';
+import { AuthContext } from '../Auth';
+import firebase from 'firebase/app';
+import '../css/call.css';
 
-import { ReactComponent as HangupIcon } from "../icons/hangup.svg";
-import { ReactComponent as MoreIcon } from "../icons/more-vertical.svg";
-import { ReactComponent as CopyIcon } from "../icons/copy.svg";
+import { ReactComponent as HangupIcon } from '../icons/hangup.svg';
+import { ReactComponent as MoreIcon } from '../icons/more-vertical.svg';
+import { ReactComponent as CopyIcon } from '../icons/copy.svg';
 
 const firestore = firebase.firestore();
-
 
 //Initialize WebRTC
 const servers = {
   iceServers: [
     {
-      urls: ["stun:stun1.l.google.com:19302", "stun:stun2.l.google.com:19302"],
+      urls: [
+        'stun:stun3.l.google.com:19302',
+        'stun:stun4.l.google.com:19302',
+        'stun:stun.nextcloud.com:443',
+        'stun:stun.webcalldirect.com:3478',
+      ],
     },
   ],
   iceCandidatePoolSize: 10,
@@ -36,7 +40,7 @@ export const NeonatalVideo = ({ mode, callId, setPage }) => {
     if (currentUser) {
       const db = firebase.firestore();
       try {
-        db.collection("users")
+        db.collection('users')
           .doc(currentUser.email)
           .get()
           .then((doc) => {
@@ -44,7 +48,7 @@ export const NeonatalVideo = ({ mode, callId, setPage }) => {
               setIsAdmin(doc.data().adminUser);
             } else {
               // doc.data() will be undefined in this case
-              console.log("No such document!");
+              console.log('No such document!');
             }
           });
       } catch (error) {
@@ -54,7 +58,7 @@ export const NeonatalVideo = ({ mode, callId, setPage }) => {
   }, []);
 
   const setupSources = async () => {
-    console.log("setupSources");
+    console.log('setupSources');
     const localStream = await navigator.mediaDevices.getUserMedia({
       video: true,
       audio: true,
@@ -77,11 +81,11 @@ export const NeonatalVideo = ({ mode, callId, setPage }) => {
 
     setWebCamActive(true);
 
-    if (mode === "create") {
-      console.log("in create");
-      const callDoc = firestore.collection("neonatalview").doc();
-      const offerCandidates = callDoc.collection("offerCandidates");
-      const answerCandidates = callDoc.collection("answerCandidates");
+    if (mode === 'create') {
+      console.log('in create');
+      const callDoc = firestore.collection('neonatalview').doc();
+      const offerCandidates = callDoc.collection('offerCandidates');
+      const answerCandidates = callDoc.collection('answerCandidates');
 
       setRoomId(callDoc.id);
 
@@ -109,7 +113,7 @@ export const NeonatalVideo = ({ mode, callId, setPage }) => {
 
       answerCandidates.onSnapshot((snapshot) => {
         snapshot.docChanges().forEach((change) => {
-          if (change.type === "added") {
+          if (change.type === 'added') {
             // let data = change.doc.data();
             // pc.addIceCandidate(new RTCIceCandidate(data))
             const candidate = new RTCIceCandidate(change.doc.data());
@@ -117,11 +121,11 @@ export const NeonatalVideo = ({ mode, callId, setPage }) => {
           }
         });
       });
-    } else if (mode === "join") {
-      console.log("in join");
-      const callDoc = firestore.collection("neonatalview").doc(callId);
-      const answerCandidates = callDoc.collection("answerCandidates");
-      const offerCandidates = callDoc.collection("offerCandidates");
+    } else if (mode === 'join') {
+      console.log('in join');
+      const callDoc = firestore.collection('neonatalview').doc(callId);
+      const answerCandidates = callDoc.collection('answerCandidates');
+      const offerCandidates = callDoc.collection('offerCandidates');
 
       pc.onicecandidate = (event) => {
         event.candidate && answerCandidates.add(event.candidate.toJSON());
@@ -146,7 +150,7 @@ export const NeonatalVideo = ({ mode, callId, setPage }) => {
 
       offerCandidates.onSnapshot((snapshot) => {
         snapshot.docChanges().forEach((change) => {
-          if (change.type === "added") {
+          if (change.type === 'added') {
             let data = change.doc.data();
             pc.addIceCandidate(new RTCIceCandidate(data));
           }
@@ -154,7 +158,7 @@ export const NeonatalVideo = ({ mode, callId, setPage }) => {
       });
     }
     pc.onconnectionstatechange = (event) => {
-      if (pc.connectionState === "disconnected") {
+      if (pc.connectionState === 'disconnected') {
         hangUp();
       }
     };
@@ -164,9 +168,9 @@ export const NeonatalVideo = ({ mode, callId, setPage }) => {
     pc.close();
 
     if (roomId) {
-      let roomRef = firestore.collection("neonatalview").doc(roomId);
+      let roomRef = firestore.collection('neonatalview').doc(roomId);
       await roomRef
-        .collection("answerCandidates")
+        .collection('answerCandidates')
         .get()
         .then((querySnapshot) => {
           querySnapshot.forEach((doc) => {
@@ -174,7 +178,7 @@ export const NeonatalVideo = ({ mode, callId, setPage }) => {
           });
         });
       await roomRef
-        .collection("offerCandidates")
+        .collection('offerCandidates')
         .get()
         .then((querySnapshot) => {
           querySnapshot.forEach((doc) => {
@@ -187,11 +191,11 @@ export const NeonatalVideo = ({ mode, callId, setPage }) => {
     window.location.reload();
   };
   if (currentUser && isAdmin) {
-    console.log(remoteRef)
+    console.log(remoteRef);
     return (
       <div className="videos">
-        <video ref={localRef} autoPlay playsInline className="local" muted style={{width: "65%"}}/>
-        <video ref={remoteRef} autoPlay playsInline className="remotew" muted />
+        <video ref={localRef} autoPlay playsInline className="local" muted />
+        <video ref={remoteRef} autoPlay playsInline className="remotew" />
         <div className="buttonsContainer">
           <button
             onClick={hangUp}
@@ -218,7 +222,7 @@ export const NeonatalVideo = ({ mode, callId, setPage }) => {
             <div className="modalview">
               <h3>Turn on your camera and microphone and start the call</h3>
               <div className="containerview">
-                <button onClick={() => setPage("home")} className="secondary">
+                <button onClick={() => setPage('home')} className="secondary">
                   Cancel
                 </button>
                 <button onClick={setupSources}>Start</button>
@@ -233,18 +237,12 @@ export const NeonatalVideo = ({ mode, callId, setPage }) => {
       <div className="videos">
         <video
           ref={localRef}
-          autoPlay
-          muted
+          autoPlay={false}
           playsInline
           className="localvideo"
-        />
-        <video
-          ref={remoteRef}
-          autoPlay
           muted
-          playsInline
-          className="remote"
         />
+        <video ref={remoteRef} autoPlay playsInline className="remote" />
         <div className="buttonsContainer">
           <button
             onClick={hangUp}
@@ -259,7 +257,7 @@ export const NeonatalVideo = ({ mode, callId, setPage }) => {
             <div className="modalview">
               <h3>Turn on your camera and microphone and start the call</h3>
               <div className="containerview">
-                <button onClick={() => setPage("home")} className="secondary">
+                <button onClick={() => setPage('home')} className="secondary">
                   Cancel
                 </button>
                 <button onClick={setupSources}>Start</button>
