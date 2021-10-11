@@ -36,7 +36,7 @@ const AcordionItem = (props) => {
         >
           <h5>{props.entries.title}</h5>
           {props.isAdmin && props.currentUser ? (
-            <div className="buttonsContainer">
+            <div className="">
               <Button
                 variant="primary"
                 size="sm"

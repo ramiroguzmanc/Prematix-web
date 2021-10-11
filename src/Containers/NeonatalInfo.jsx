@@ -42,10 +42,10 @@ const NeonatalInfo = (props) => {
                 <Col className="col-md-6 offset-md-3">
                   <img
                     src={neonato.ImageURL}
-                    class="img-thumbnail rounded-circle mx-auto my-5 d-block"
+                    class="img-thumbnail"
                     alt="Neonato"
-                    width="400px"
-                    height="400px"
+                    // width="400px"
+                    // height="400px"
                   />
                 </Col>
               </Row>
